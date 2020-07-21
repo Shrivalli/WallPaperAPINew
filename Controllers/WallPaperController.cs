@@ -13,7 +13,7 @@ namespace WallPaperAPI.Controllers
     {
         public string[] getData()
         {
-            return new string[] { "welcome", "Good morning","Good day" };
+            return new string[] { "welcome", "Good morning","Good day","good evening" };
         }
     }
 }
