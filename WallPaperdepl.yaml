@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: WallPaperAPI-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: WallPaperAPI
+  template:
+    metadata:
+      labels:
+        app: WallPaperAPI
+    spec:
+      containers:
+      - name: wallpaperapi
+        image: wallpapercr.azurecr.io/wallpaperrepos:latest
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: wallpapersn
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: wallpaperapi
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: WallPaperAPI
