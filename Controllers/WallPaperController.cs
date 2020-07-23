@@ -15,5 +15,24 @@ namespace WallPaperAPI.Controllers
         {
             return new string[] { "welcome", "Good morning","Good day","good evening" };
         }
+        [HttpGet("getProd")]
+        public async Task<ActionResult<List<Product>>> getAllData()
+        {
+            List<Product> product = Product.getProducts();
+            return Ok(product);
+        }
+
+        public List<Product> getProds()
+        {
+            List<Product> products = Product.getProducts();
+            return products;
+        }
+        // [Route("getProd/{id}")]
+        [HttpGet("getProd/{id}")]
+        public async Task<ActionResult<Product>> getProdDetail(string id)
+        {
+            Product product = Product.getProducts().Find(p=>p.PID==id);
+            return Ok(product);
+        }
     }
 }
